@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Yatin Jangra - 1st Year B.Tech AI & ML Student | Python Backend Developer. Creator of JARVIS Voice Assistant, Nova AI, and Lord Krishna Boutique Backend." />
+  <title>Yatin Jangra | AI & Python Backend Developer</title>
+
+  <!-- Google Fonts: Inter, Plus Jakarta Sans, Space Grotesk & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient Particle Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient Ceiling Light Cone (Lights up smoothly in Light Mode) -->
+  <div class="ceiling-lamp-glow" id="ceiling-lamp-glow"></div>
+
+  <!-- ===================================================================
+       ULTRA-REALISTIC HANGING LAMP PULL-CORD SWITCH
+       Turned Walnut & Brass Acorn Fob with Dynamic SVG String & Spring Physics
+       =================================================================== -->
+  <div class="hanging-pull-cord" id="pull-cord" role="button" tabindex="0" aria-label="Pull lamp cord to toggle Dark / Light mode">
+    <!-- Ceiling Mount (Brass / Brushed Steel Rosette) -->
+    <div class="cord-ceiling-mount">
+      <div class="mount-plate"></div>
+      <div class="mount-bezel"></div>
+    </div>
+
+    <!-- The SVG Dynamic Cord (Bends and stretches in real-time) -->
+    <svg class="cord-svg" id="cord-svg" viewBox="0 0 60 240" preserveAspectRatio="none">
+      <defs>
+        <filter id="cord-shadow" x="-50%" y="-10%" width="200%" height="130%">
+          <feDropShadow dx="1.5" dy="2.5" stdDeviation="1.5" flood-color="rgba(0,0,0,0.45)"/>
+        </filter>
+        <linearGradient id="cord-metal-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#57534e" />
+          <stop offset="30%" stop-color="#d6d3d1" />
+          <stop offset="70%" stop-color="#f5f5f4" />
+          <stop offset="100%" stop-color="#44403c" />
+        </linearGradient>
+      </defs>
+      <!-- Dynamic Bezier path representing the cord -->
+      <path id="cord-line" d="M 30 0 Q 30 65 30 130" stroke="url(#cord-metal-grad)" stroke-width="2.2" stroke-linecap="round" filter="url(#cord-shadow)"/>
+    </svg>
+
+    <!-- The 3D Acorn Pull Fob (Lathe-turned Walnut & Brass) -->
+    <div class="cord-knob" id="cord-knob">
+      <div class="knob-ferrule"></div>
+      <div class="knob-wood-body">
+        <div class="knob-specular"></div>
+        <div class="knob-ring-groove"></div>
+      </div>
+      <div class="knob-brass-tip"></div>
+      <div class="knob-lamp-glow"></div>
+    </div>
+
+    <!-- Floating Pull Tooltip -->
+    <span class="cord-tooltip" id="cord-tooltip">
+      <i class="fa-solid fa-arrows-up-down"></i> Pull
+    </span>
+  </div>
+
+  <!-- Fixed Navigation Bar -->
+  <header class="header">
+    <div class="nav-container">
+      <a href="#hero" class="logo">
+        <span class="logo-bracket">&lt;</span><span class="logo-name">Yatin</span><span class="logo-dot">.backend</span><span class="logo-bracket"> /&gt;</span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#doors-section" class="nav-link"><i class="fa-solid fa-door-open"></i> Magic Doors</a>
+        <a href="#projects" class="nav-link"><i class="fa-solid fa-microchip"></i> Projects</a>
+        <a href="#time-machine" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> Year 2026</a>
+        <a href="#skills" class="nav-link"><i class="fa-solid fa-server"></i> Backend Skills</a>
+        <a href="#cli-terminal" class="nav-link"><i class="fa-solid fa-terminal"></i> Terminal</a>
+        <a href="#contact" class="nav-link"><i class="fa-solid fa-paper-plane"></i> Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Also accessible via button in navbar -->
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme" title="Switch Theme (or pull the string on the right!)">
+          <i class="fa-solid fa-moon moon-icon"></i>
+          <i class="fa-solid fa-sun sun-icon"></i>
+        </button>
+
+        <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="GitHub Profile">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/yatin-jangra-43412341a" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="LinkedIn Profile">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+        <a href="#contact" class="btn-hire">Let's Connect</a>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===================================================================
+         HERO SECTION ("Hi, I'm Yatin. I am a [Pill Badge]" from Video)
+         =================================================================== -->
+    <section id="hero" class="hero-section">
+      <div class="hero-container">
+        <div class="hero-text-col">
+          <div class="hero-badge">
+            <span class="pulse-dot"></span> 1st Year B.Tech AI & ML • Python Backend Developer
+          </div>
+
+          <h1 class="hero-greeting">Hi, I'm <span class="gradient-text">Yatin.</span></h1>
+
+          <div class="hero-role-wrapper">
+            <span class="role-intro">I am a</span>
+            <div class="role-pill-box">
+              <span id="role-pill" class="role-pill">Python Backend Developer</span>
+            </div>
+          </div>
+
+          <p class="hero-subtext">
+            First-year <strong>B.Tech AI & Machine Learning student</strong> focused exclusively on 
+            <strong>Python Backend Engineering</strong>, building voice AI pipelines with <strong>Speech Recognition & ElevenLabs</strong>, 
+            multimodal models with <strong>Groq & PyTorch</strong>, and high-performance APIs with <strong>FastAPI, Flask & MySQL</strong>.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#doors-section" class="btn btn-primary">
+              <i class="fa-solid fa-door-open"></i> Unlock The Doors
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <i class="fa-solid fa-terminal"></i> Backend Projects
+            </a>
+            <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+              <i class="fa-brands fa-github"></i> github/yatin341
+            </a>
+          </div>
+
+          <div class="hero-stat-badges">
+            <div class="stat-badge">
+              <span class="stat-num">1st Year</span>
+              <span class="stat-txt">B.Tech AI & ML</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-badge">
+              <span class="stat-num">Backend Only</span>
+              <span class="stat-txt">Python, FastAPI, SQL</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-badge">
+              <span class="stat-num">Year 2026</span>
+              <span class="stat-txt">Active Development</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card-col">
+          <div class="creator-portrait-card">
+            <div class="portrait-header">
+              <div class="traffic-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <span class="portrait-tag"><i class="fa-solid fa-terminal"></i> yatin_backend.py</span>
+              <span class="portrait-status">2026 FRESHMAN</span>
+            </div>
+
+            <!-- REAL DEVELOPER PHOTO -->
+            <div class="portrait-photo-container">
+              <div class="photo-ambient-glow"></div>
+              <div class="photo-frame">
+                <img
+                  src="assets/yatin-photo.jpg"
+                  alt="Yatin Jangra - Python Backend Developer"
+                  class="portrait-real-img"
+                  loading="eager"
+                />
+                <div class="photo-vignette"></div>
+                <div class="photo-badge">
+                  <span class="pulse-dot"></span> Available for Backend Roles
+                </div>
+              </div>
+            </div>
+
+            <div class="portrait-bio">
+              <h3>Yatin Jangra</h3>
+              <p class="portrait-subtitle">B.Tech AI & ML • Backend Developer</p>
+              <div class="portrait-tags">
+                <span><i class="fa-brands fa-python"></i> Python Core</span>
+                <span><i class="fa-solid fa-bolt"></i> FastAPI & Flask</span>
+                <span><i class="fa-solid fa-brain"></i> Basic PyTorch</span>
+                <span><i class="fa-solid fa-database"></i> MySQL / SQL</span>
+                <span><i class="fa-solid fa-microphone"></i> Voice AI</span>
+              </div>
+            </div>
+
+            <div class="portrait-actions">
+              <a href="mailto:yatinjangra97@gmail.com" class="p-btn"><i class="fa-solid fa-envelope"></i> Email</a>
+              <a href="https://www.linkedin.com/in/yatin-jangra-43412341a" target="_blank" class="p-btn"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+              <a href="https://github.com/yatin341" target="_blank" class="p-btn"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================
+         REALISTIC 3D INTERACTIVE DOORS ("Magic happens behind the doors")
+         =================================================================== -->
+    <section id="doors-section" class="doors-section">
+      <div class="section-container">
+        <div class="doors-header">
+          <span class="section-kicker">// 3D Interactive Portals</span>
+          <h2 class="doors-title">Magic happens behind the doors</h2>
+          <p class="doors-subtitle">Click any door to swing it open in 3D perspective. <strong>Click inside an open door</strong> to inspect that project's full architecture dossier and code.</p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="doors-stage">
+          <!-- Door 1: JARVIS Voice AI -->
+          <div class="door-wrapper" data-door="1" data-project="jarvis">
+            <div class="door-casing">
+              <div class="door-frame">
+                <div class="door-interior door-interior-jarvis" data-project="jarvis" tabindex="0" role="button" aria-label="Open JARVIS Project Details">
+                  <div class="interior-glow"></div>
+                  <div class="interior-content">
+                    <div class="interior-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                    <span class="interior-badge">Voice AI Engine</span>
+                    <h4>JARVIS</h4>
+                    <p>SpeechRecognition, ElevenLabs Flash TTS, Groq AI, and voice typing computer automation.</p>
+                    <button type="button" class="door-inspect-btn" data-project="jarvis">
+                      <i class="fa-solid fa-expand"></i> Inspect Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="interior-click-hint">
+                      <span class="ping-dot"></span> Click inside for full dossier
+                    </div>
+                  </div>
+                </div>
+
+                <div class="door-leaf door-leaf-blue" id="door-leaf-1" title="Click to open or close door">
+                  <div class="door-hinge hinge-top"></div>
+                  <div class="door-hinge hinge-mid"></div>
+                  <div class="door-hinge hinge-bottom"></div>
+
+                  <div class="door-arch-top"></div>
+                  <div class="door-plaque">
+                    <span class="plaque-number">01</span>
+                    <span class="plaque-title"><i class="fa-solid fa-robot"></i> Voice AI</span>
+                  </div>
+
+                  <div class="wood-panel panel-upper">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-middle">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-lower">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+
+                  <div class="brass-handle-set">
+                    <div class="brass-backplate">
+                      <div class="screw screw-top"></div>
+                      <div class="brass-lever"></div>
+                      <div class="keyhole"></div>
+                      <div class="screw screw-bottom"></div>
+                    </div>
+                  </div>
+
+                  <div class="door-edge-bevel"></div>
+                  <div class="door-open-hint"><i class="fa-solid fa-hand-pointer"></i> Open Door</div>
+                </div>
+              </div>
+              <div class="door-floor-beam"></div>
+            </div>
+            <div class="door-caption">
+              <span class="caption-num">DOOR 01</span>
+              <span class="caption-name">JARVIS Voice Assistant</span>
+            </div>
+          </div>
+
+          <!-- Door 2: Nova AI Multimodal -->
+          <div class="door-wrapper" data-door="2" data-project="nova">
+            <div class="door-casing">
+              <div class="door-frame">
+                <div class="door-interior door-interior-nova" data-project="nova" tabindex="0" role="button" aria-label="Open Nova AI Project Details">
+                  <div class="interior-glow"></div>
+                  <div class="interior-content">
+                    <div class="interior-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <span class="interior-badge">Multimodal Backend</span>
+                    <h4>Nova AI</h4>
+                    <p>Groq GPT-OSS-20B, Cloudflare FLUX 2 Klein, Magic Hour & local PyTorch MusicGen with CUDA.</p>
+                    <button type="button" class="door-inspect-btn" data-project="nova">
+                      <i class="fa-solid fa-expand"></i> Inspect Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="interior-click-hint">
+                      <span class="ping-dot"></span> Click inside for full dossier
+                    </div>
+                  </div>
+                </div>
+
+                <div class="door-leaf door-leaf-gold" id="door-leaf-2" title="Click to open or close door">
+                  <div class="door-hinge hinge-top"></div>
+                  <div class="door-hinge hinge-mid"></div>
+                  <div class="door-hinge hinge-bottom"></div>
+
+                  <div class="door-arch-top"></div>
+                  <div class="door-plaque">
+                    <span class="plaque-number">02</span>
+                    <span class="plaque-title"><i class="fa-solid fa-compact-disc"></i> Multimodal AI</span>
+                  </div>
+
+                  <div class="wood-panel panel-upper">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-middle">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-lower">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+
+                  <div class="brass-handle-set">
+                    <div class="brass-backplate">
+                      <div class="screw screw-top"></div>
+                      <div class="brass-lever"></div>
+                      <div class="keyhole"></div>
+                      <div class="screw screw-bottom"></div>
+                    </div>
+                  </div>
+
+                  <div class="door-edge-bevel"></div>
+                  <div class="door-open-hint"><i class="fa-solid fa-hand-pointer"></i> Open Door</div>
+                </div>
+              </div>
+              <div class="door-floor-beam"></div>
+            </div>
+            <div class="door-caption">
+              <span class="caption-num">DOOR 02</span>
+              <span class="caption-name">Nova AI Assistant</span>
+            </div>
+          </div>
+
+          <!-- Door 3: Lord Krishna Boutique Backend -->
+          <div class="door-wrapper" data-door="3" data-project="boutique">
+            <div class="door-casing">
+              <div class="door-frame">
+                <div class="door-interior door-interior-boutique" data-project="boutique" tabindex="0" role="button" aria-label="Open Boutique Backend Details">
+                  <div class="interior-glow"></div>
+                  <div class="interior-content">
+                    <div class="interior-icon"><i class="fa-solid fa-database"></i></div>
+                    <span class="interior-badge">Flask & MySQL Backend</span>
+                    <h4>Boutique Backend</h4>
+                    <p>Customer appointment booking API, dynamic price estimation, and MySQL schema init.</p>
+                    <button type="button" class="door-inspect-btn" data-project="boutique">
+                      <i class="fa-solid fa-expand"></i> Inspect Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="interior-click-hint">
+                      <span class="ping-dot"></span> Click inside for full dossier
+                    </div>
+                  </div>
+                </div>
+
+                <div class="door-leaf door-leaf-teal" id="door-leaf-3" title="Click to open or close door">
+                  <div class="door-hinge hinge-top"></div>
+                  <div class="door-hinge hinge-mid"></div>
+                  <div class="door-hinge hinge-bottom"></div>
+
+                  <div class="door-arch-top"></div>
+                  <div class="door-plaque">
+                    <span class="plaque-number">03</span>
+                    <span class="plaque-title"><i class="fa-solid fa-server"></i> Flask & MySQL</span>
+                  </div>
+
+                  <div class="wood-panel panel-upper">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-middle">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-lower">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+
+                  <div class="brass-handle-set">
+                    <div class="brass-backplate">
+                      <div class="screw screw-top"></div>
+                      <div class="brass-lever"></div>
+                      <div class="keyhole"></div>
+                      <div class="screw screw-bottom"></div>
+                    </div>
+                  </div>
+
+                  <div class="door-edge-bevel"></div>
+                  <div class="door-open-hint"><i class="fa-solid fa-hand-pointer"></i> Open Door</div>
+                </div>
+              </div>
+              <div class="door-floor-beam"></div>
+            </div>
+            <div class="door-caption">
+              <span class="caption-num">DOOR 03</span>
+              <span class="caption-name">Boutique Booking Backend</span>
+            </div>
+          </div>
+
+          <!-- Door 4: Backend Arsenal & Computer Vision -->
+          <div class="door-wrapper" data-door="4" data-project="backend">
+            <div class="door-casing">
+              <div class="door-frame">
+                <div class="door-interior door-interior-tech" data-project="backend" tabindex="0" role="button" aria-label="Open Backend Stack Details">
+                  <div class="interior-glow"></div>
+                  <div class="interior-content">
+                    <div class="interior-icon"><i class="fa-solid fa-code"></i></div>
+                    <span class="interior-badge">Core Backend Stack</span>
+                    <h4>Backend & Vision</h4>
+                    <p>Python Core, FastAPI, OpenCV vision processing, PyTorch tensors & SQL schemas.</p>
+                    <button type="button" class="door-inspect-btn" data-project="backend">
+                      <i class="fa-solid fa-expand"></i> Inspect Details <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <div class="interior-click-hint">
+                      <span class="ping-dot"></span> Click inside for full dossier
+                    </div>
+                  </div>
+                </div>
+
+                <div class="door-leaf door-leaf-rose" id="door-leaf-4" title="Click to open or close door">
+                  <div class="door-hinge hinge-top"></div>
+                  <div class="door-hinge hinge-mid"></div>
+                  <div class="door-hinge hinge-bottom"></div>
+
+                  <div class="door-arch-top"></div>
+                  <div class="door-plaque">
+                    <span class="plaque-number">04</span>
+                    <span class="plaque-title"><i class="fa-solid fa-microchip"></i> Backend Stack</span>
+                  </div>
+
+                  <div class="wood-panel panel-upper">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-middle">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+                  <div class="wood-panel panel-lower">
+                    <div class="wood-panel-inner"></div>
+                  </div>
+
+                  <div class="brass-handle-set">
+                    <div class="brass-backplate">
+                      <div class="screw screw-top"></div>
+                      <div class="brass-lever"></div>
+                      <div class="keyhole"></div>
+                      <div class="screw screw-bottom"></div>
+                    </div>
+                  </div>
+
+                  <div class="door-edge-bevel"></div>
+                  <div class="door-open-hint"><i class="fa-solid fa-hand-pointer"></i> Open Door</div>
+                </div>
+              </div>
+              <div class="door-floor-beam"></div>
+            </div>
+            <div class="door-caption">
+              <span class="caption-num">DOOR 04</span>
+              <span class="caption-name">Vision & Core Backend</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="doors-controls">
+          <button id="open-all-doors" class="btn-door-toggle"><i class="fa-solid fa-door-open"></i> Open All Doors</button>
+          <button id="close-all-doors" class="btn-door-toggle"><i class="fa-solid fa-door-closed"></i> Close All Doors</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED BACKEND PROJECTS -->
+    <section id="projects" class="projects-section">
+      <div class="section-container">
+        <div class="section-title-wrap">
+          <span class="section-sub">// Verified Backend Code</span>
+          <h2 class="section-title">Backend Projects</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <!-- Project 1: JARVIS -->
+        <div class="project-showcase-card" id="project-jarvis">
+          <div class="showcase-left">
+            <div class="showcase-tag-row">
+              <span class="tag-status live">🟢 Working</span>
+              <span class="tag-category">Voice AI & Automation Backend</span>
+            </div>
+            <h3 class="showcase-title">JARVIS — Personal Voice Assistant</h3>
+            <p class="showcase-description">
+              A Python-based personal AI assistant capable of understanding spoken commands, speaking natural responses, 
+              opening websites, controlling YouTube, answering general knowledge with <strong>Groq AI</strong>, 
+              executing <strong>Voice Typing</strong>, and maintaining conversation history.
+            </p>
+
+            <div class="feature-bullets">
+              <div class="bullet-item">
+                <i class="fa-solid fa-microphone"></i>
+                <div>
+                  <strong>Voice Recognition & Hotword:</strong>
+                  <span>SpeechRecognition library with Google Speech API. Awakens on <em>"Jarvis"</em> and replies <em>"Yes boss"</em>.</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-volume-high"></i>
+                <div>
+                  <strong>ElevenLabs Flash TTS + pyttsx3:</strong>
+                  <span>Natural conversational audio output with fallback to local offline pyttsx3.</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-brain"></i>
+                <div>
+                  <strong>Groq AI & 10-Message Rolling Context:</strong>
+                  <span>Answers complex questions with Groq API and tracks follow-up questions in a rolling session context.</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-keyboard"></i>
+                <div>
+                  <strong>Voice Typing & PC Automation:</strong>
+                  <span>Dictates spoken words into any active Windows application via PyAutoGUI & Pyperclip.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tech-stack-chips">
+              <span>Python Core</span>
+              <span>SpeechRecognition</span>
+              <span>Groq API</span>
+              <span>ElevenLabs</span>
+              <span>pyttsx3</span>
+              <span>PyAutoGUI</span>
+              <span>Pyperclip</span>
+              <span>history.json</span>
+            </div>
+
+            <div class="showcase-actions">
+              <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <i class="fa-brands fa-github"></i> View JARVIS Source Code
+              </a>
+            </div>
+          </div>
+
+          <div class="showcase-right">
+            <div class="terminal-mockup">
+              <div class="terminal-header">
+                <div class="traffic-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="term-title">mega_project_jarvis.py</span>
+                <span class="term-badge">Live Output</span>
+              </div>
+              <div class="terminal-content">
+                <p class="t-dim">$ python mega_project_jarvis.py</p>
+                <p class="t-green">>> Initializing speech recognition & audio drivers...</p>
+                <p class="t-cyan">>> ElevenLabs Flash Model: Connected</p>
+                <p class="t-green">>> JARVIS is ready!</p>
+                <div class="t-divider"></div>
+                <p class="t-user"><span class="label">User:</span> "Jarvis"</p>
+                <p class="t-bot"><span class="label">JARVIS:</span> "Yes boss"</p>
+                <p class="t-user"><span class="label">User:</span> "Open YouTube and play Believer"</p>
+                <p class="t-bot"><span class="label">JARVIS:</span> "Opening YouTube and playing Believer boss..."</p>
+                <p class="t-user"><span class="label">User:</span> "Start typing"</p>
+                <p class="t-bot"><span class="label">JARVIS:</span> "Voice typing activated. Tell me what to type."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: NOVA AI -->
+        <div class="project-showcase-card reverse" id="project-nova">
+          <div class="showcase-left">
+            <div class="showcase-tag-row">
+              <span class="tag-status live">🟢 Working</span>
+              <span class="tag-category">Multimodal AI Backend</span>
+            </div>
+            <h3 class="showcase-title">Nova AI — Multimodal Assistant</h3>
+            <p class="showcase-description">
+              A Python-based multimodal AI assistant combining conversational intelligence with real-time web search, 
+              AI image generation/editing, AI video generation/animation, and <strong>locally running AI music generation</strong>.
+            </p>
+
+            <div class="feature-bullets">
+              <div class="bullet-item">
+                <i class="fa-solid fa-comments"></i>
+                <div>
+                  <strong>Groq GPT-OSS-20B + Web Search:</strong>
+                  <span>Context-aware multilingual chat with Groq browser search for up-to-date live news & tech.</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-image"></i>
+                <div>
+                  <strong>FLUX 2 Klein 4B via Cloudflare Workers AI:</strong>
+                  <span>Generates and edits high-res images from text prompts (saved to <code>generated_image.png</code>).</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-film"></i>
+                <div>
+                  <strong>Magic Hour Video Generation & Animation:</strong>
+                  <span>Text-to-video, image-to-video animation with camera movement, and video-to-video style editing.</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-music"></i>
+                <div>
+                  <strong>Local Meta MusicGen (PyTorch + CUDA):</strong>
+                  <span>Generates relaxing piano or cinematic background WAV music locally without cloud music APIs.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tech-stack-chips">
+              <span>Python</span>
+              <span>Groq (GPT-OSS-20B)</span>
+              <span>PyTorch</span>
+              <span>CUDA GPU</span>
+              <span>Cloudflare Workers AI</span>
+              <span>FLUX 2 Klein</span>
+              <span>Magic Hour</span>
+              <span>Transformers</span>
+            </div>
+
+            <div class="showcase-actions">
+              <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <i class="fa-brands fa-github"></i> View Nova AI Source Code
+              </a>
+            </div>
+          </div>
+
+          <div class="showcase-right">
+            <div class="terminal-mockup">
+              <div class="terminal-header">
+                <div class="traffic-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="term-title">Nova-AI / main.py</span>
+                <span class="term-badge">PyTorch + CUDA</span>
+              </div>
+              <div class="terminal-content">
+                <p class="t-dim">$ python main.py</p>
+                <p class="t-cyan">>> Loading MusicGen Small...</p>
+                <p class="t-green">>> Device: cuda (NVIDIA GPU Acceleration active)</p>
+                <p class="t-green">>> MusicGen loaded successfully!</p>
+                <div class="t-divider"></div>
+                <p class="t-user"><span class="label">Prompt:</span> "Generate an image of a futuristic city"</p>
+                <p class="t-bot"><span class="label">Cloudflare:</span> "FLUX 2 Klein rendered → generated_image.png"</p>
+                <p class="t-user"><span class="label">Prompt:</span> "Generate relaxing piano music"</p>
+                <p class="t-bot"><span class="label">PyTorch:</span> "Synthesizing audio tensors → generated_music.wav"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Lord Krishna Boutique Backend -->
+        <div class="project-showcase-card" id="project-boutique">
+          <div class="showcase-left">
+            <div class="showcase-tag-row">
+              <span class="tag-status live">🟢 Working</span>
+              <span class="tag-category">Flask & MySQL Backend System</span>
+            </div>
+            <h3 class="showcase-title">Lord Krishna Boutique — Booking Engine</h3>
+            <p class="showcase-description">
+              A Flask-based backend booking system for managing customer service reservations. 
+              Features automated database table creation, custom server-side input validation, 
+              and dynamic price calculation engine saved securely into MySQL.
+            </p>
+
+            <div class="feature-bullets">
+              <div class="bullet-item">
+                <i class="fa-solid fa-list-check"></i>
+                <div>
+                  <strong>Service Selection & Dynamic Pricing:</strong>
+                  <span>Suit Stitching, Lehenga Stitching, and Bridal Wear with instant price estimation calculation.</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                  <strong>Validation Engine & Security:</strong>
+                  <span>Backend validation for 10-digit mobile numbers, dates, and safe credential handling via <code>.env</code>.</span>
+                </div>
+              </div>
+              <div class="bullet-item">
+                <i class="fa-solid fa-database"></i>
+                <div>
+                  <strong>Automated MySQL Initialization:</strong>
+                  <span><code>init_db()</code> creates and configures the <code>bookings</code> relational schema on server boot.</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="tech-stack-chips">
+              <span>Python (Flask)</span>
+              <span>MySQL Database</span>
+              <span>REST Routing</span>
+              <span>Form Validation</span>
+              <span>python-dotenv</span>
+            </div>
+
+            <div class="showcase-actions">
+              <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <i class="fa-brands fa-github"></i> View Boutique Source Code
+              </a>
+            </div>
+          </div>
+
+          <div class="showcase-right">
+            <div class="terminal-mockup">
+              <div class="terminal-header">
+                <div class="traffic-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="term-title">app.py (Flask Server)</span>
+                <span class="term-badge">MySQL :3306</span>
+              </div>
+              <div class="terminal-content">
+                <p class="t-dim">$ python app.py</p>
+                <p class="t-green">>> Connecting to MySQL (lord_krishna_boutique)...</p>
+                <p class="t-green">>> Table 'bookings' verified/initialized!</p>
+                <p class="t-cyan">>> Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</p>
+                <div class="t-divider"></div>
+                <p class="t-user"><span class="label">POST /book:</span> {"service": "Bridal Wear", "phone": "6280715453"}</p>
+                <p class="t-bot"><span class="label">Response:</span> 200 OK — "Booking recorded. Notification sent!"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCLUSIVE YEAR 2026 SECTION -->
+    <section id="time-machine" class="time-machine-section">
+      <div class="section-container">
+        <div class="time-header">
+          <span class="section-kicker">// Freshman Milestones</span>
+          <h2 class="time-title">Year 2026: The AI Inception</h2>
+          <p class="doors-subtitle">First-Year B.Tech AI & ML journey dedicated to mastering Python backend architecture.</p>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="time-machine-container single-year">
+          <div class="time-year-col">
+            <div class="year-giant-display">2026</div>
+            <span class="year-badge"><i class="fa-solid fa-graduation-cap"></i> 1st Year B.Tech AI & ML</span>
+          </div>
+
+          <div class="time-content-col">
+            <div class="year-grid-cards">
+              <div class="milestone-box">
+                <div class="m-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+                <h4>JARVIS Voice Assistant</h4>
+                <p>Engineered SpeechRecognition, ElevenLabs Flash neural voice, Groq AI context, and voice typing PC control.</p>
+                <span class="m-tag">Voice & Automation</span>
+              </div>
+
+              <div class="milestone-box">
+                <div class="m-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h4>Nova AI Multimodal Platform</h4>
+                <p>Connected Cloudflare FLUX 2 Klein, Magic Hour AI video, and local MusicGen on NVIDIA CUDA GPU.</p>
+                <span class="m-tag">Generative AI & PyTorch</span>
+              </div>
+
+              <div class="milestone-box">
+                <div class="m-icon"><i class="fa-solid fa-database"></i></div>
+                <h4>Lord Krishna Boutique Backend</h4>
+                <p>Constructed Flask REST backend, automated MySQL schema creation, and server-side validation.</p>
+                <span class="m-tag">Flask & MySQL</span>
+              </div>
+
+              <div class="milestone-box">
+                <div class="m-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h4>FastAPI & Vision Foundations</h4>
+                <p>Mastered asynchronous FastAPI microservices, OpenCV computer vision frames, and basic PyTorch tensors.</p>
+                <span class="m-tag">FastAPI & OpenCV</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL BACKEND SKILLS ARSENAL -->
+    <section id="skills" class="skills-section">
+      <div class="section-container">
+        <div class="section-title-wrap">
+          <span class="section-sub">// Core Competencies</span>
+          <h2 class="section-title">Backend Skills Arsenal</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon py-icon"><i class="fa-brands fa-python"></i></div>
+              <div>
+                <h4>Python Core</h4>
+                <span class="skill-tag-sub">OOP, Asyncio, Scripts</span>
+              </div>
+            </div>
+            <p>Data structures, classes, exception handling, multithreading, and modular architecture across real production scripts.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon voice-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+              <div>
+                <h4>Speech Recognition & TTS</h4>
+                <span class="skill-tag-sub">ElevenLabs & pyttsx3</span>
+              </div>
+            </div>
+            <p>Real-time microphone capture, hotword detection, Google Speech API binding, and natural neural voice playback.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon torch-icon"><i class="fa-solid fa-brain"></i></div>
+              <div>
+                <h4>Basic PyTorch</h4>
+                <span class="skill-tag-sub">Tensors & Local Inference</span>
+              </div>
+            </div>
+            <p>Neural models inference, tensor operations, CUDA device targeting, and local MusicGen loading via Hugging Face.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon cv-icon"><i class="fa-solid fa-camera"></i></div>
+              <div>
+                <h4>OpenCV</h4>
+                <span class="skill-tag-sub">Computer Vision</span>
+              </div>
+            </div>
+            <p>Real-time video processing, facial detection cascades, color thresholding, and morphological image transformations.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon fast-icon"><i class="fa-solid fa-bolt"></i></div>
+              <div>
+                <h4>FastAPI</h4>
+                <span class="skill-tag-sub">High-Speed Microservices</span>
+              </div>
+            </div>
+            <p>Asynchronous REST routing, Pydantic schema validation, automatic OpenAPI / Swagger documentation, and dependency injection.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon api-icon"><i class="fa-solid fa-network-wired"></i></div>
+              <div>
+                <h4>API Implementation</h4>
+                <span class="skill-tag-sub">REST, JSON, Webhooks</span>
+              </div>
+            </div>
+            <p>Integration with Groq, ElevenLabs, Cloudflare Workers AI, Magic Hour, and external weather/news APIs.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon sql-icon"><i class="fa-solid fa-database"></i></div>
+              <div>
+                <h4>Basic SQL</h4>
+                <span class="skill-tag-sub">MySQL & Relational Design</span>
+              </div>
+            </div>
+            <p>Relational table creation, CRUD queries, indexing, and persistent database connections for web booking systems.</p>
+          </div>
+
+          <div class="skill-card">
+            <div class="skill-header">
+              <div class="skill-icon git-icon"><i class="fa-brands fa-git-alt"></i></div>
+              <div>
+                <h4>Dev Tools & Git</h4>
+                <span class="skill-tag-sub">Linux, VS Code, GitHub</span>
+              </div>
+            </div>
+            <p>Version control branching, PyAutoGUI desktop automation, virtual environments, and `.env` secret management.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE CLI TERMINAL -->
+    <section id="cli-terminal" class="terminal-section">
+      <div class="section-container">
+        <div class="section-title-wrap">
+          <span class="section-sub">// Command Prompt</span>
+          <h2 class="section-title">Developer Terminal</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="cli-window">
+          <div class="cli-topbar">
+            <div class="traffic-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="cli-user">yatin@backend-server:~ (bash)</span>
+            <span class="cli-tip">Try: <strong>jarvis</strong>, <strong>nova</strong>, <strong>boutique</strong>, <strong>skills</strong>, <strong>help</strong></span>
+          </div>
+
+          <div class="cli-output" id="cli-output">
+            <div class="cli-line">Yatin Jangra Backend Terminal [Year 2026 • B.Tech AI & ML]</div>
+            <div class="cli-line">Type <span class="highlight">help</span> to view available commands.</div>
+            <div class="cli-line">&nbsp;</div>
+          </div>
+
+          <div class="cli-input-row">
+            <span class="cli-prompt"><span class="u">yatin</span><span class="at">@</span><span class="h">backend</span>:<span class="p">~</span>$</span>
+            <input type="text" id="cli-input" placeholder="Type a command..." autocomplete="off" spellcheck="false" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="contact-section">
+      <div class="section-container">
+        <div class="contact-box">
+          <div class="contact-header">
+            <span class="section-kicker">// Ready to Collaborate</span>
+            <h2 class="contact-big-title">Got a project? <br /><span class="gradient-text">Let's build it together.</span></h2>
+            <p class="contact-sub">
+              Looking for a dedicated Python backend developer for voice AI, API integrations, PyTorch models, or MySQL database pipelines? 
+              Drop me a line anytime!
+            </p>
+          </div>
+
+          <div class="contact-cards-grid">
+            <div class="contact-card">
+              <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="c-info">
+                <span class="c-label">Direct Mail</span>
+                <a href="mailto:yatinjangra97@gmail.com" class="c-value">yatinjangra97@gmail.com</a>
+              </div>
+              <button id="copy-email-btn" class="c-action" title="Copy Email">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+
+            <div class="contact-card">
+              <div class="c-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="c-info">
+                <span class="c-label">GitHub Repository</span>
+                <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="c-value">github.com/yatin341</a>
+              </div>
+              <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="c-action">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+
+            <div class="contact-card">
+              <div class="c-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+              <div class="c-info">
+                <span class="c-label">LinkedIn Profile</span>
+                <a href="https://www.linkedin.com/in/yatin-jangra-43412341a" target="_blank" rel="noopener noreferrer" class="c-value">linkedin.com/in/yatin-jangra-43412341a</a>
+              </div>
+              <a href="https://www.linkedin.com/in/yatin-jangra-43412341a" target="_blank" rel="noopener noreferrer" class="c-action">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="quick-contact-action">
+            <a href="mailto:yatinjangra97@gmail.com?subject=Backend%20Opportunity&body=Hi%20Yatin," class="btn btn-primary btn-large">
+              <i class="fa-solid fa-paper-plane"></i> Launch Email Transmission
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================================================================
+       PROJECT DEEP-DIVE MODAL DOSSIER (Opened when clicking inside doors)
+       =================================================================== -->
+  <div id="project-modal" class="project-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" id="modal-backdrop"></div>
+    <div class="modal-dialog">
+      <div class="modal-container">
+        <!-- Top Window Header with OS Traffic Dots & Breadcrumbs -->
+        <div class="modal-topbar">
+          <div class="modal-traffic-dots">
+            <span class="dot red" id="modal-close-dot" title="Close Modal"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="modal-breadcrumb">
+            <i class="fa-solid fa-folder-open"></i>
+            <span class="mb-root">projects</span>
+            <span class="mb-slash">/</span>
+            <span class="mb-target" id="modal-breadcrumb-title">jarvis_voice_engine.py</span>
+          </div>
+          <div class="modal-topbar-actions">
+            <span class="modal-esc-hint"><kbd>ESC</kbd> to close</span>
+            <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close modal window">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project Modal Content (Populated dynamically by script.js) -->
+        <div class="modal-body" id="modal-body">
+          <!-- Dynamically populated -->
+        </div>
+
+        <!-- Modal Bottom Bar with Navigation & Actions -->
+        <div class="modal-footer">
+          <div class="modal-nav-group">
+            <button type="button" class="modal-nav-btn" id="modal-prev-btn" title="Previous Project">
+              <i class="fa-solid fa-arrow-left"></i> <span>Previous</span>
+            </button>
+            <span class="modal-nav-indicator" id="modal-nav-indicator">1 of 4</span>
+            <button type="button" class="modal-nav-btn" id="modal-next-btn" title="Next Project">
+              <span>Next</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+
+          <div class="modal-action-group">
+            <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-modal-action" id="modal-github-btn">
+              <i class="fa-brands fa-github"></i> <span>View Code on GitHub</span>
+            </a>
+            <button type="button" class="btn btn-secondary btn-modal-action" id="modal-dismiss-btn">
+              Close Dossier
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="f-left">
+        <span class="footer-logo">&lt;Yatin.backend /&gt;</span>
+        <p>1st Year B.Tech AI & ML • Python Backend Developer.</p>
+      </div>
+      <div class="f-center">
+        <p>&copy; 2026 <strong>Yatin Jangra</strong>. All rights reserved.</p>
+      </div>
+      <div class="f-right">
+        <a href="https://github.com/yatin341" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/yatin-jangra-43412341a" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:yatinjangra97@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#hero" class="back-top" title="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script -->
+  <script src="script.js"></script>
+</body>
+</html>
